@@ -34,6 +34,14 @@ class App extends React.Component {
       contacts: sortedByPopularity
     })
   }
+  deleteRow = (celebId) =>{
+    let rowToDeleteIndex = this.state.contacts.findIndex(el=>el.id===celebId)
+    let contacts4 = [...this.state.contacts]
+    contacts4.splice(rowToDeleteIndex,1)
+    this.setState({
+      contacts : contacts4
+    })
+  }
   render() {
     return (
       <div className="App" >
@@ -54,9 +62,13 @@ class App extends React.Component {
             <td><img src={el.pictureUrl} alt='profile-pic'/></td>
             <td>{el.name}</td>
             <td>{el.popularity}</td>
+            <button onClick={()=>{
+              this.deleteRow(el.id)
+            }}>Delete</button>
           </tr>
           )  
           })}
+
         </tbody>
       </table>
       </div>
