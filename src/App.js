@@ -16,13 +16,30 @@ class App extends React.Component {
     this.setState({
       contacts: contactCopy
     })
-
+  }
+  sortByName = () =>{
+    //localeCompare by name
+    let contacts2 = [...this.state.contacts]
+    let sortedByName = contacts2.sort(function(a,b){
+      return a.name.localeCompare(b.name)
+    })
+    this.setState({
+      contacts: sortedByName
+    })
+  }
+  sortByPopularity = () => {
+    let contacts3 = [...this.state.contacts]
+    let sortedByPopularity = contacts3.sort((a,b)=>b.popularity-a.popularity)
+    this.setState({
+      contacts: sortedByPopularity
+    })
   }
   render() {
     return (
       <div className="App" >
          <button onClick={this.addRandomContact}>Add Random Contact </button>
-         
+         <button onClick={this.sortByName}>Sort By Name</button>
+         <button onClick={this.sortByPopularity}>Sort By Popularity</button>
       <table>
         <thead>
           <tr>
