@@ -7,11 +7,12 @@ class App extends React.Component {
     contacts: json.slice(0,5)
   }
   addRandomContact =()=>{
-    let random= Math.floor(Math.random()*json.length)
-    let newContact= json[random]
+    let json2 = [...json].splice(5)
+    let random= Math.floor(Math.random()*json2.length)
+    let newContact= json2[random]
     let contactCopy= [...this.state.contacts]
     contactCopy.push(newContact)
-
+    console.log(json2.length, json.length)
     this.setState({
       contacts: contactCopy
     })
@@ -33,7 +34,7 @@ class App extends React.Component {
                <tbody>
           {this.state.contacts.map(el=> { return (
             <tr key={el.id}>
-            <td><img src={el.pictureUrl}/></td>
+            <td><img src={el.pictureUrl} alt='profile-pic'/></td>
             <td>{el.name}</td>
             <td>{el.popularity}</td>
           </tr>
